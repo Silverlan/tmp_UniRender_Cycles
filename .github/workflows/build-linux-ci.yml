@@ -29,6 +29,12 @@ jobs:
           - os: ubuntu-24.04
             name: "Ubuntu 24.04"
     steps:
+      - name: Set up Clang 16
+        uses: egor-tensin/setup-clang@v1
+        with:
+          version: 16
+          platform: x64
+
       - name: Setup Pragma
         uses: Silverlan/pragma/github_actions/setup@main
         
@@ -42,12 +48,6 @@ jobs:
         with:
           # This will build the core dependencies, as well as cycles, but not Pragma
           build-args: "--with-essential-client-modules=0 --with-common-modules=0 --with-lua-debugger=0 --module pr_unirender:\"https://github.com/Silverlan/tmp_pr_cycles.git\" --build 0 --build-cycles"
-
-      - name: Set up Clang 16
-        uses: egor-tensin/setup-clang@v1
-        with:
-          version: 16
-          platform: x64
 
       - name: Build UniRender_cycles
         shell: bash
