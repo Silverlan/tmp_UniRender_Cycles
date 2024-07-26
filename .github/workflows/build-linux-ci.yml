@@ -29,11 +29,11 @@ jobs:
           - os: ubuntu-24.04
             name: "Ubuntu 24.04"
     steps:
-      - name: Set up Clang 16
-        uses: egor-tensin/setup-clang@v1
-        with:
-          version: 16
-          platform: x64
+      #- name: Set up Clang 16
+      #  uses: egor-tensin/setup-clang@v1
+      #  with:
+      #    version: 16
+      #    platform: x64
 
       - name: Setup Pragma
         uses: Silverlan/pragma/github_actions/setup@main
