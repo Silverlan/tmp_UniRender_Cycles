@@ -171,15 +171,15 @@ void unirender::cycles::DisplayDriver::unmap_texture_buffer()
 	// Cycles continue with a different image buffer immediately.
 	std::scoped_lock lock {m_postProcessingMutex};
 
-	uint32_t tileIndex = m_mappedTileIndex;
-	auto &mappedImageBuffer = m_mappedTileImageBuffers[tileIndex];
-
 	/*static auto debugDumpAsFile = false;
-	if(debugDumpAsFile) {
+	if(debugDumpAsFile)
+	{
 		debugDumpAsFile = false;
-		dump_image_file("combined", *mappedImageBuffer);
+		dump_image_file("combined",*m_mappedImageBuffer);
 	}*/
 
+	uint32_t tileIndex = m_mappedTileIndex;
+	auto &mappedImageBuffer = m_mappedTileImageBuffers[tileIndex];
 	auto &pendingForPpImageBuffer = m_pendingForPpTileImageBuffers[tileIndex];
 	std::swap(mappedImageBuffer, pendingForPpImageBuffer);
 	m_imageBufferReadyForPp.push({tileIndex, m_mappedOffset, m_mappedSize});
